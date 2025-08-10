@@ -1,0 +1,85 @@
+.custom-table {
+  font-size: 14px;
+}
+
+.custom-table .ant-table {
+  font-size: 14px;
+}
+
+.custom-table .ant-table-thead > tr > th {
+  font-size: 14px;
+  font-weight: 600;
+  background: #fafafa;
+  padding: 12px 16px;
+} 
+
+.custom-table .ant-table-tbody > tr > td {
+  padding: 12px 16px;
+}
+
+.custom-table .ant-table-pagination {
+  margin: 16px 0;
+}
+
+/* SubToolbar Styles */
+.sub-toolbar {
+  margin-bottom: 24px;
+}
+
+.sub-toolbar .ant-btn {
+  font-size: 14px;
+  height: 36px;
+}
+
+.sub-toolbar .ant-input-search {
+  width: 300px;
+}
+
+.sub-toolbar .ant-space {
+  gap: 24px;
+}
+
+/* Layout Styles */
+.records-layout {
+  padding: 24px;
+}
+
+.records-layout .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.records-layout .page-title {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+/* Table Action Buttons */
+.table-action-button {
+  font-size: 16px;
+  color: #1890ff;
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.table-action-button:hover {
+  color: #40a9ff;
+}
+
+/* Status Tags */
+.status-tag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.compact-table .ant-table-thead > tr > th,
+.compact-table .ant-table-tbody > tr > td {
+  font-size: 12px !important;
+  font-weight: normal !important;
+  padding: 4px 8px !important;
+}
+
