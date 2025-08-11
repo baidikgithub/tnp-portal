@@ -1,26 +1,26 @@
 "use client";
 import React, { useState } from "react";
 import AuthLogo from "@/components/AuthLogo";
-import RegisterForm from "@/components/RegisterForm";
+import ForgotPasswordForm from "@/components/ForgotPasswordForm";
 import RotatingBanner from "@/components/RotatingBanner";
 
-const RegisterPage: React.FC = () => {
+const ForgotPasswordPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
-  const handleRegister = (values: any) => {
+  const handleForgotPassword = (values: any) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      console.log("Registration values:", values);
-      // registration logic here
+      console.log("Reset request for email:", values.email);
+      // API call for reset link
     }, 1000);
   };
 
   const messages = [
-    "Join SMIT's Career Growth Journey",
-    "Create Your Account to Access Placement Resources",
-    "Step Into Opportunities with Our Portal",
-    "Prepare Today. Succeed Tomorrow."
+    "Reset Your Password Easily",
+    "Secure Access to SMIT Placement Portal",
+    "Don't Worry, We've Got You Covered",
+    "Access Your Career Tools Again in Minutes"
   ];
 
   const images = [
@@ -40,7 +40,7 @@ const RegisterPage: React.FC = () => {
         background: "#f7f8fa",
       }}
     >
-      {/* Left Panel */}
+      {/* Left panel with form */}
       <div
         style={{
           flex: 1,
@@ -59,21 +59,20 @@ const RegisterPage: React.FC = () => {
             alignItems: "flex-start",
           }}
         >
-          <AuthLogo logoSrc="/smit.png" title="Create Your SMIT Account" />
-          <RegisterForm
-            onRegister={handleRegister}
+          <AuthLogo logoSrc="/smit.png" title="Forgot Your Password?" />
+          <ForgotPasswordForm
+            onSubmit={handleForgotPassword}
             loading={loading}
-            footerText="Already have an account?"
+            footerText="Remembered your password?"
             footerLink={{ label: "Login", href: "/auth/login" }}
           />
-
         </div>
       </div>
 
-      {/* Right Panel */}
+      {/* Right rotating banner */}
       <RotatingBanner messages={messages} images={images} />
     </div>
   );
 };
 
-export default RegisterPage;
+export default ForgotPasswordPage;
