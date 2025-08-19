@@ -83,3 +83,25 @@
   padding: 4px 8px !important;
 }
 
+/* global.css */
+
+html, body, #__next {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: transparent;
+}
+/* Optional: for the overlay and layout */
+
+.ant-layout {
+  min-height: 100vh;
+  margin: 0;
+}
