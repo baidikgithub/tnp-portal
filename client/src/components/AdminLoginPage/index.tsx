@@ -3,7 +3,7 @@ import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
-interface LoginFormProps {
+interface AdminLoginFormProps {
   onLogin: (values: any) => void;
   loading?: boolean;
   footerText?: string;
@@ -11,7 +11,7 @@ interface LoginFormProps {
   forgotLink?: { label: string; href: string }; // <-- NEW prop
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({
+const AdminLoginForm: React.FC<AdminLoginFormProps> = ({
   onLogin,
   loading,
   footerText = "Don't have an account?",
@@ -22,9 +22,9 @@ const LoginForm: React.FC<LoginFormProps> = ({
     <Form layout="vertical" style={{ width: "100%" }} onFinish={onLogin}>
       {/* Email */}
       <Form.Item
-        name="registrationNumber"
-        label="Registration Number"
-        rules={[{ required: true, message: "Enter a valid registration number" }]}
+        name="username"
+        label="Username"
+        rules={[{ required: true, message: "Enter a valid user name" }]}
       >
         <Input prefix={<UserOutlined />} placeholder="Valid email address" size="large" />
       </Form.Item>
@@ -74,4 +74,4 @@ const LoginForm: React.FC<LoginFormProps> = ({
   );
 };
 
-export default LoginForm;
+export default AdminLoginForm;
