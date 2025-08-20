@@ -1,33 +1,57 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import AuthLogo from "@/components/AuthLogo";
 import LoginForm from "@/components/LoginForm";
 import RotatingBanner from "@/components/RotatingBanner";
 
 const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleLogin = (values: any) => {
-    setLoading(true);
-    setTimeout(() => {
+  const handleLogin = async (values: { regNo: string; password: string }) => {
+    try {
+      setLoading(true);
+
+      const res = await fetch("http://localhost:5000/api/students/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values), // ✅ { regNo, password }
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Login failed");
+        return;
+      }
+
+      // Save token & student
+      localStorage.setItem("smitstudentToken", data.token);
+      localStorage.setItem("smitstudent", JSON.stringify(data.student));
+
+      // ✅ redirect after login
+      router.push("/profile");
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("Something went wrong. Try again.");
+    } finally {
       setLoading(false);
-      console.log("Login values:", values);
-      // redirect or auth logic here
-    }, 1000);
+    }
   };
 
   const messages = [
     "Empower Your Future with SMIT Training and Placement",
     "Access Placement Resources, Aptitude Tests, and Company Profiles",
     "Unlock Career Opportunities Through Our Portal",
-    "Prepare. Perform. Get Placed."
+    "Prepare. Perform. Get Placed.",
   ];
 
   const images = [
     "/images1.jpeg",
     "/images2.jpeg",
     "/images3.jpg",
-    "/images2.jpeg"
+    "/images2.jpeg",
   ];
 
   return (
@@ -59,13 +83,17 @@ const LoginPage: React.FC = () => {
             alignItems: "flex-start",
           }}
         >
-          <AuthLogo logoSrc="/smit.png" title="Training and Placement Cell Portal" />
+          <AuthLogo
+            logoSrc="/smit.png"
+            title="Training and Placement Cell Portal"
+          />
           <LoginForm
             onLogin={handleLogin}
             loading={loading}
-            forgotLink={{ label: "Forgot password?", href: "/auth/forgot-password" }}
-            footerText="Don't have an account?"
-            footerLink={{ label: "Register", href: "/auth/register" }}
+            forgotLink={{
+              label: "Forgot password?",
+              href: "/auth/forgot-password",
+            }}
           />
         </div>
       </div>
